@@ -4,10 +4,11 @@ import StartGameScreen from "./screens/StartGameScreen";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import GameScreen from "./screens/GameScreen";
-import Colors from "./constants/colors";
+import Colors from "./constants/colors.ios";
 import GameOverScreen from "./screens/GameOverScreen";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import React from "react";
 
 const App = () => {
   const [userNumber, setUserNumber] = useState(null);
@@ -58,20 +59,22 @@ const App = () => {
   }
 
   return (
-    <LinearGradient
-      colors={[Colors.primary700, Colors.accent500]}
-      style={styles.rootScreen}
-    >
-      <ImageBackground
-        source={require("./assets/images/background.png")}
-        resizeMode="cover"
+    <React.Fragment>
+      <StatusBar style="light" />
+      <LinearGradient
+        colors={[Colors.primary700, Colors.accent500]}
         style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
       >
-        <StatusBar style="light" />
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require("./assets/images/background.png")}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </React.Fragment>
   );
 };
 
